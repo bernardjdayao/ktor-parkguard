@@ -1,0 +1,29 @@
+### GET ALL USERS
+GET localhost:8080/api/users
+
+### CREATE USER
+POST localhost:8080/api/users
+Content-Type: application/json
+
+{
+"firstname":"Jyrel",
+"lastname":"Arcillas",
+"age":21
+}
+
+
+### GET SINGLE USER
+GET localhost:8080/api/users/070af117-52b3-45c1-9379-8aca24fd3bb5
+
+### DELETE USER
+DELETE localhost:8080/api/users/f1aaa25e-7011-4c4d-ae7c-feff7b4a7a12
+
+### UPDATE USER
+PUT localhost:8080/api/users/86a04f4a-947a-431c-a08a-e52df3ae7f90
+Content-Type: application/json
+
+{
+"firstname": "Bernard Justin",
+"lastname": "Dayao",
+"age": 25
+}
