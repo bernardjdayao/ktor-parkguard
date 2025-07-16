@@ -13,17 +13,53 @@ Content-Type: application/json
 
 
 ### GET SINGLE USER
-GET localhost:8080/api/users/070af117-52b3-45c1-9379-8aca24fd3bb5
+GET localhost:8080/api/users/b79280d6-447b-4f9c-b324-76fc2fe19ac2
 
 ### DELETE USER
-DELETE localhost:8080/api/users/f1aaa25e-7011-4c4d-ae7c-feff7b4a7a12
+DELETE localhost:8080/api/users/959c139d-bbce-4faa-87e9-92af5351b097
 
 ### UPDATE USER
-PUT localhost:8080/api/users/86a04f4a-947a-431c-a08a-e52df3ae7f90
+PUT localhost:8080/api/users/47fb652f-6cfe-4855-8454-176ab9a36ccc
 Content-Type: application/json
 
 {
 "firstname": "Bernard Justin",
 "lastname": "Dayao",
 "age": 25
+}
+
+### GET ALL VEHICLES
+GET localhost:8080/api/vehicles
+
+### CREATE VEHICLE
+POST localhost:8080/api/vehicles
+Content-Type: application/json
+
+{
+"plateNumber":"NGR112"
+"brand":"Toyota",
+"model":"Hilux",
+"color":"blue",
+"year":1999,
+"sticker":1001,
+"ownerId":"b79280d6-447b-4f9c-b324-76fc2fe19ac2"
+}
+### GET SINGLE VEHICLE
+GET localhost:8080/api/vehicles/NGR112
+
+### DELETE VEHICLE
+DELETE localhost:8080/api/vehicles/
+
+### UPDATE VEHICLE
+PUT localhost:8080/api/vehicles/NGR112
+Content-Type: application/json
+
+{
+"plateNumber" : "NGR112",
+"brand" : Toyota,
+"model" : Vios,
+"color" : red,
+"year" : 2000,
+"sticker" : 1002,
+"ownerId" : "fe8a395e-8c99-4bf2-aafd-0f403fbc375e"
 }
