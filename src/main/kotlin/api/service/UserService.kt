@@ -21,7 +21,7 @@ class UserService(private val userRepository: UserRepository) {
         val save = userRepository.save(
             userDto mapToModel userId
         )
-        return if (!save) {
+        return if (save) {
             ApiResponse(code = 201, data = userDto.copy(id = userId))
         } else ApiResponse(
             code = 500,

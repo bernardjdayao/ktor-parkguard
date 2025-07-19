@@ -24,19 +24,19 @@ fun Route.vehicleRoute(vehicleService: VehicleService){
         call.respond(responsePayload.code.toHttpCode(),responsePayload)
     }
 
-    get("/{plateNumber}") {
-        val responsePayload = vehicleService.getVehicle(call.parameters["plateNumber"].toString())
+    get("/{sticker}") {
+        val responsePayload = vehicleService.getVehicle(call.parameters["sticker"]?.toInt() ?: 0)
         call.respond(responsePayload.code.toHttpCode(),responsePayload)
     }
 
-    put("/{plateNumber}"){
+    put("/{sticker}"){
         val request = call.receive<VehicleDto>()
-        val responsePayload = vehicleService.updateVehicle(call.parameters["plateNumber"].toString(),request)
+        val responsePayload = vehicleService.updateVehicle(call.parameters["sticker"]?.toInt() ?: 0,request)
         call.respond(responsePayload.code.toHttpCode(),responsePayload)
     }
 
-    delete("/{plateNumber}") {
-        val responsePayload = vehicleService.deleteVehicle(call.parameters["plateNumber"].toString())
+    delete("/{sticker}") {
+        val responsePayload = vehicleService.deleteVehicle(call.parameters["sticker"]?.toInt() ?: 0)
         call.respond(responsePayload.code.toHttpCode(),responsePayload)
     }
 }

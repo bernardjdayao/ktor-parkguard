@@ -22,26 +22,26 @@ fun UserModel.mapToDto():UserDto{
     )
 }
 
-fun VehicleDto.mapToModel(platenumber: String): VehicleModel{
+fun VehicleDto.mapToModel(sticker: Int): VehicleModel{
     return VehicleModel(
-        plateNumber = platenumber,
+        sticker = sticker,
+        plateNumber = this.plateNumber,
         brand = this.brand,
         model = this.model,
         color = this.color,
         year = this.year,
-        sticker = this.sticker,
         ownerId = this.ownerId
     )
 }
 
 fun VehicleModel.mapToDto(): VehicleDto{
     return VehicleDto(
+        sticker = this.sticker,
         plateNumber = this.plateNumber,
         brand = this.brand,
         model = this.model,
         color = this.color,
         year = this.year,
-        sticker = this.sticker,
         ownerId = this.ownerId
     )
 }

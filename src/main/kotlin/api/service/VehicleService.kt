@@ -16,17 +16,17 @@ class VehicleService(private val vehicleRepository: VehicleRepository) {
 
     suspend fun createVehicle(vehicleDto: VehicleDto): ApiResponse<VehicleDto> {
         try {
-            if (vehicleRepository.vehicleExists(vehicleDto.plateNumber)) {
+            if (vehicleRepository.vehicleExists(vehicleDto.sticker)) {
                 return ApiResponse(
                     code = 409,
-                    message = "Vehicle with plate number ${vehicleDto.plateNumber} already exists."
+                    message = "Vehicle with sticker ${vehicleDto.sticker} already exists."
                 )
             }
-            val plateNumber = vehicleDto.plateNumber
+            val sticker = vehicleDto.sticker
 
-            val save = vehicleRepository.save(vehicleDto.mapToModel(plateNumber))
+            val save = vehicleRepository.save(vehicleDto.mapToModel(sticker))
             return if (!save) {
-                ApiResponse(code = 201, data = vehicleDto.copy(plateNumber = plateNumber))
+                ApiResponse(code = 201, data = vehicleDto.copy(sticker = sticker))
             } else ApiResponse(
                 code = 500,
                 message = "Failed to save to Db"
@@ -38,19 +38,19 @@ class VehicleService(private val vehicleRepository: VehicleRepository) {
         }
     }
 
-    suspend fun getVehicle(plateNumber: String): ApiResponse<VehicleDto> {
+    suspend fun getVehicle(sticker: Int): ApiResponse<VehicleDto> {
         return try {
-            vehicleRepository.getByPlateNumber(plateNumber)?.let { vehicleModel ->
+            vehicleRepository.getByStickerID(sticker)?.let { vehicleModel ->
                 ApiResponse(
                     data = vehicleModel.mapToDto(),
                     message = "Vehicle Retrieved Successfully."
                 )
             } ?: ApiResponse(
                 code = 404,
-                message = "Error retrieving plate number $plateNumber not found."
+                message = "Error retrieving sticker $sticker not found."
             )
         } catch (e: Exception) {
-            System.err.println("Error retrieving vehicle with plate number $plateNumber: ${e.message}")
+            System.err.println("Error retrieving vehicle with sticker $sticker: ${e.message}")
             e.printStackTrace()
             ApiResponse(
                 code = 500,
@@ -60,37 +60,37 @@ class VehicleService(private val vehicleRepository: VehicleRepository) {
     }
 
     suspend fun updateVehicle(
-        plateNumber: String,
+        sticker: Int,
         vehicleDto: VehicleDto
     ): ApiResponse<VehicleDto> {
         return try {
-            if (!vehicleRepository.vehicleExists(plateNumber)) {
+            if (!vehicleRepository.vehicleExists(sticker)) {
                 return ApiResponse(
                     code = 404,
-                    message = "Vehicle with plate number $plateNumber not found"
+                    message = "Vehicle with sticker $sticker not found"
                 )
             }
-            if (plateNumber != vehicleDto.plateNumber) {
+            if (sticker != vehicleDto.sticker) {
                 return ApiResponse(
                     code = 400,
-                    message = "Plate number in path ($plateNumber) does not match plate number in body (${vehicleDto.plateNumber}"
+                    message = "Sticker in path ($sticker) does not match sticker in body (${vehicleDto.sticker}"
                 )
             }
-            val vehicleEntityToUpdate = vehicleDto.mapToModel(plateNumber)
+            val vehicleEntityToUpdate = vehicleDto.mapToModel(sticker)
             val update = vehicleRepository.update(vehicleEntityToUpdate)
             if (update) {
                 ApiResponse(
                     data = vehicleDto,
-                    message = "Vehicle with plate number $plateNumber update succesfully."
+                    message = "Vehicle with sticker $sticker update succesfully."
                 )
             } else {
                 ApiResponse(
                     code = 500,
-                    message = "Failed to update vehicle with plate number $plateNumber due to an internal error."
+                    message = "Failed to update vehicle with sticker $sticker due to an internal error."
                 )
             }
         } catch (e: Exception) {
-            System.err.println("Error updating vehicle with plate number $plateNumber: ${e.message}")
+            System.err.println("Error updating vehicle with sticker $sticker: ${e.message}")
             e.printStackTrace()
             ApiResponse(
                 code = 500,
@@ -99,19 +99,19 @@ class VehicleService(private val vehicleRepository: VehicleRepository) {
         }
     }
 
-    suspend fun deleteVehicle(plateNumber: String): ApiResponse<Unit> {
+    suspend fun deleteVehicle(sticker: Int): ApiResponse<Unit> {
         return try {
-            if (!vehicleRepository.vehicleExists(plateNumber)) {
-                return ApiResponse(code = 404, message = "Vehicle with plate number $plateNumber not found.")
+            if (!vehicleRepository.vehicleExists(sticker)) {
+                return ApiResponse(code = 404, message = "Vehicle with sticker $sticker not found.")
             }
-            val delete = vehicleRepository.delete(plateNumber)
+            val delete = vehicleRepository.delete(sticker)
             if (delete) {
-                ApiResponse(message = "Vehicle with plate number $plateNumber deleted successfully.")
+                ApiResponse(message = "Vehicle with sticker $sticker deleted successfully.")
             } else {
-                ApiResponse(code = 500, message = "Failed to delete vehicle with plate number $plateNumber due to an internal error.")
+                ApiResponse(code = 500, message = "Failed to delete vehicle with sticker $sticker due to an internal error.")
             }
         } catch (e: Exception) {
-            System.err.println("Error deleting vehicle with plate number $plateNumber: ${e.message}")
+            System.err.println("Error deleting vehicle with sticker $sticker: ${e.message}")
             e.printStackTrace()
             ApiResponse(code = 500, message = "Failed to delete vehicle: ${e.message ?: "Unknown error"}")
         }

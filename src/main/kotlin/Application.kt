@@ -1,5 +1,6 @@
 package com.parkguard
 
+import com.parkguard.api.database.DatabaseFactory
 import com.parkguard.api.plugin.configureRouting
 import com.parkguard.api.plugin.configureSerialization
 import com.parkguard.api.repository.VehicleRepository
@@ -14,6 +15,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    DatabaseFactory.init()
     val userRepository = UserRepositoryImpl()
     val vehicleRepository = VehicleRepositoryImpl()
     val userService= UserService(userRepository)

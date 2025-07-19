@@ -6,17 +6,17 @@ POST localhost:8080/api/users
 Content-Type: application/json
 
 {
-"firstname":"Jyrel",
-"lastname":"Arcillas",
+"firstname":"Bernard",
+"lastname":"Dayao",
 "age":21
 }
 
 
 ### GET SINGLE USER
-GET localhost:8080/api/users/b79280d6-447b-4f9c-b324-76fc2fe19ac2
+GET localhost:8080/api/users/19845b05-d285-4eb8-80f8-3dab5330f06d
 
 ### DELETE USER
-DELETE localhost:8080/api/users/959c139d-bbce-4faa-87e9-92af5351b097
+DELETE localhost:8080/api/users/19845b05-d285-4eb8-80f8-3dab5330f06d
 
 ### UPDATE USER
 PUT localhost:8080/api/users/47fb652f-6cfe-4855-8454-176ab9a36ccc
@@ -36,16 +36,16 @@ POST localhost:8080/api/vehicles
 Content-Type: application/json
 
 {
+"sticker":1000,
 "plateNumber":"NGR112"
 "brand":"Toyota",
 "model":"Hilux",
 "color":"blue",
 "year":1999,
-"sticker":1001,
-"ownerId":"b79280d6-447b-4f9c-b324-76fc2fe19ac2"
+"ownerId":"4d6dfe82-2974-4d1c-b896-43a6c1ef780c"
 }
 ### GET SINGLE VEHICLE
-GET localhost:8080/api/vehicles/NGR112
+GET localhost:8080/api/vehicles/1000
 
 ### DELETE VEHICLE
 DELETE localhost:8080/api/vehicles/
@@ -61,5 +61,5 @@ Content-Type: application/json
 "color" : red,
 "year" : 2000,
 "sticker" : 1002,
-"ownerId" : "fe8a395e-8c99-4bf2-aafd-0f403fbc375e"
+"ownerId" : "e4dae3ed-3d24-444c-8848-bd2eaa16eceb"
 }
