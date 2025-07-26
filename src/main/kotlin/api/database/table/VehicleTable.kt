@@ -2,12 +2,12 @@ package com.parkguard.api.database.table
 
 import org.jetbrains.exposed.sql.Table
 
-object VehicleTable: Table(name="vehicles") {
-    val sticker = integer("sticker")
-    val plateNumber = varchar("plateNumber", length = 10)
-    val brand = varchar ("brand", length = 50)
-    val model = varchar ("model", length = 50)
-    val color = varchar ("color", length = 50)
-    val year = integer ("year")
-    var ownerId = varchar ("ownerId", length = 100)
+object VehicleTable : Table(name = "vehicles") {
+    val sticker_no = varchar("sticker_no", 10)
+    val plate_number = varchar("plate_number", 10)
+    val brand = varchar("brand", 50)
+    val model = varchar("model", 50)
+    val color = varchar("color", 50)
+    val year = integer("year")
+    val id = varchar("id", 100)
 }

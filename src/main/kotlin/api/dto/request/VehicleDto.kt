@@ -4,11 +4,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class VehicleDto(
-    val sticker: Int,
-    val plateNumber: String,
+    val sticker_no: String,
+    val plate_number: String,
     val brand: String,
     val model: String,
     val color: String,
     val year: Int,
-    val ownerId: String
+    val id: String
 )

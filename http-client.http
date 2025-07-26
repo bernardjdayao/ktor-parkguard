@@ -6,14 +6,17 @@ POST localhost:8080/api/users
 Content-Type: application/json
 
 {
-"firstname":"Bernard",
+"id":"2022161535"
+"firstname":"Bernard Justin",
 "lastname":"Dayao",
-"age":21
+"age":21,
+"year":"3rd Year",
+"program": "BSIT"
 }
 
 
 ### GET SINGLE USER
-GET localhost:8080/api/users/19845b05-d285-4eb8-80f8-3dab5330f06d
+GET localhost:8080/api/users/2022161535
 
 ### DELETE USER
 DELETE localhost:8080/api/users/19845b05-d285-4eb8-80f8-3dab5330f06d
@@ -23,8 +26,8 @@ PUT localhost:8080/api/users/47fb652f-6cfe-4855-8454-176ab9a36ccc
 Content-Type: application/json
 
 {
-"firstname": "Bernard Justin",
-"lastname": "Dayao",
+"firstname": "Ken",
+"lastname": "De Martin",
 "age": 25
 }
 
@@ -36,30 +39,84 @@ POST localhost:8080/api/vehicles
 Content-Type: application/json
 
 {
-"sticker":1000,
-"plateNumber":"NGR112"
-"brand":"Toyota",
-"model":"Hilux",
-"color":"blue",
-"year":1999,
-"ownerId":"4d6dfe82-2974-4d1c-b896-43a6c1ef780c"
+"sticker_no": "0001",
+"plate_number": "NGR111",
+"model": "Honda",
+"brand": "Civic",
+"color": "Red",
+"year": 1999,
+"id": "2022161530"
 }
 ### GET SINGLE VEHICLE
-GET localhost:8080/api/vehicles/1000
+GET localhost:8080/api/vehicles/0001
 
 ### DELETE VEHICLE
-DELETE localhost:8080/api/vehicles/
+DELETE localhost:8080/api/vehicles/0002
 
 ### UPDATE VEHICLE
-PUT localhost:8080/api/vehicles/NGR112
+PUT localhost:8080/api/vehicles/0001
 Content-Type: application/json
 
 {
-"plateNumber" : "NGR112",
-"brand" : Toyota,
-"model" : Vios,
-"color" : red,
-"year" : 2000,
-"sticker" : 1002,
-"ownerId" : "e4dae3ed-3d24-444c-8848-bd2eaa16eceb"
+"sticker_no": "0001",
+"plate_number" : "NGR111",
+"brand" : "Toyota",
+"model" : "Vios",
+"color" : "Red",
+"year" : "2000",
+"id" : "2022161535"
+}
+
+### GET ALL PARKING LOTS
+GET localhost:8080/api/parking
+
+### GET SPECIFIC PARKING LOTS
+GET localhost:8080/api/parking/0003
+
+### GET ALL LOTROWS
+GET localhost:8080/api/lotrow
+
+### GET SPECIFIC LOTROW
+GET localhost:8080/api/lotrow/C/0002
+
+### GET SPECIFIC LOTROW VIA PARKING ID
+GET localhost:8080/api/lotrow/parkingid/0001
+
+### GET ALL PARKING SLOTS
+GET localhost:8080/api/parkingslot
+
+### GET ALL BY PARKING SLOT
+GET localhost:8080/api/parkingslot/1
+
+### SEE IF VEHICLE IS PARKING VIA STICKER NUMBER
+GET localhost:8080/api/parkingslot/check/0001/0001
+
+### GET PARKING SLOT INFO
+GET localhost:8080/api/parkingslot/parking-info/A/0001
+
+### GET ALL AVAILABLE PARKING SLOTS
+GET localhost:8080/api/parkingslot/available-slots/0001
+
+### PUT INTO PARKING
+POST localhost:8080/api/parkingslot
+Content-Type: application/json
+
+{
+"slot_no": 1,
+"row_code": "A",
+"parking_id": "0001",
+"is_available": false,
+"sticker_no": "0001"
+}
+
+### EXIT PARKING / PUT INTO PARKING
+PUT localhost:8080/api/parkingslot/parkthecar
+Content-Type: application/json
+
+{
+"slot_no": 4,
+"row_code": "B",
+"parking_id": "0001",
+"is_available": false,
+"sticker_no": "1002"
 }

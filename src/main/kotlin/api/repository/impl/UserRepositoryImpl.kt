@@ -32,6 +32,8 @@ class UserRepositoryImpl : UserRepository {
                 it[firstname] = userModel.firstname
                 it[lastname] = userModel.lastname
                 it[age] = userModel.age
+                it[year] = userModel.year
+                it[program] = userModel.program
             }.insertedCount > 0
         }
     }
@@ -42,6 +44,8 @@ class UserRepositoryImpl : UserRepository {
                 it[firstname] = userModel.firstname
                 it[lastname] = userModel.lastname
                 it[age] = userModel.age
+                it[year] = userModel.year
+                it[program] = userModel.program
             } > 0
         }
 

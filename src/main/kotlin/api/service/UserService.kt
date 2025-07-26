@@ -17,7 +17,7 @@ class UserService(private val userRepository: UserRepository) {
     }
 
     suspend fun createUser(userDto: UserDto): ApiResponse<UserDto> {
-        val userId = UUID.randomUUID().toString()
+        val userId = userDto.id
         val save = userRepository.save(
             userDto mapToModel userId
         )
